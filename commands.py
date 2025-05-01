@@ -1,130 +1,23 @@
+import os
+
 from aiogram import Router
 from aiogram.filters import Command
-from aiogram.types import Message
+from aiogram.types import Message, FSInputFile
 from database import database
-from keyboard import about_company_btn
+from keyboard import start_buttons
+from messages import messages
 
 router = Router()
 
 
 @router.message(Command("start"))
 async def command_start_handler(message: Message):
+    img = FSInputFile(os.path.join(os.path.dirname(__file__), "images", "evos.png"))
+    full_name = f"{message.from_user.first_name} {message.from_user.last_name if message.from_user.last_name else ''}"
     lang = database.get_user_lang(message.from_user.id)
     user = database.get_user(message.from_user.id)
     if not user:
         database.insert_user(first_name=message.from_user.first_name,
                              last_name=message.from_user.last_name,
                              telegram_id=message.from_user.id)
-    await message.answer("Hello! I'm a bot created with aiogram.", reply_markup=about_company_btn(lang))
-
-#
-# dict1 = message_id = 3
-# date = datetime.datetime(2025, 4, 29, 4, 34, 25, tzinfo=TzInfo(UTC))
-# chat = Chat(id=308824742, type='private', title=None, username='naimovbunyod', first_name='Bunyod', last_name=None,
-#             is_forum=None, accent_color_id=None, active_usernames=None, available_reactions=None,
-#             background_custom_emoji_id=None, bio=None, birthdate=None, business_intro=None, business_location=None,
-#             business_opening_hours=None, can_set_sticker_set=None, custom_emoji_sticker_set_name=None, description=None,
-#             emoji_status_custom_emoji_id=None, emoji_status_expiration_date=None, has_aggressive_anti_spam_enabled=None,
-#             has_hidden_members=None, has_private_forwards=None, has_protected_content=None,
-#             has_restricted_voice_and_video_messages=None, has_visible_history=None, invite_link=None,
-#             join_by_request=None, join_to_send_messages=None, linked_chat_id=None, location=None,
-#             message_auto_delete_time=None, permissions=None, personal_chat=None, photo=None, pinned_message=None,
-#             profile_accent_color_id=None, profile_background_custom_emoji_id=None, slow_mode_delay=None,
-#             sticker_set_name=None, unrestrict_boost_count=None)
-# message_thread_id = None
-# from_user = User(id=308824742, is_bot=False, first_name='Bunyod', last_name=None, username='naimovbunyod',
-#                  language_code='ru', is_premium=None, added_to_attachment_menu=None, can_join_groups=None,
-#                  can_read_all_group_messages=None, supports_inline_queries=None, can_connect_to_business=None,
-#                  has_main_web_app=None)
-# sender_chat = None
-# sender_boost_count = None
-# sender_business_bot = None
-# business_connection_id = None
-# forward_origin = None
-# is_topic_message = None
-# is_automatic_forward = None
-# reply_to_message = None
-# external_reply = None
-# quote = None
-# reply_to_story = None
-# via_bot = None
-# edit_date = None
-# has_protected_content = None
-# is_from_offline = None
-# media_group_id = None
-# author_signature = None
-# paid_star_count = None
-# text = '/start'
-# entities = [
-#     MessageEntity(type='bot_command', offset=0, length=6, url=None, user=None, language=None, custom_emoji_id=None)]
-# link_preview_options = None
-# effect_id = None
-# animation = None
-# audio = None
-# document = None
-# paid_media = None
-# photo = None
-# sticker = None
-# story = None
-# video = None
-# video_note = None
-# voice = None
-# caption = None
-# caption_entities = None
-# show_caption_above_media = None
-# has_media_spoiler = None
-# contact = None
-# dice = None
-# game = None
-# poll = None
-# venue = None
-# location = None
-# new_chat_members = None
-# left_chat_member = None
-# new_chat_title = None
-# new_chat_photo = None
-# delete_chat_photo = None
-# group_chat_created = None
-# supergroup_chat_created = None
-# channel_chat_created = None
-# message_auto_delete_timer_changed = None
-# migrate_to_chat_id = None
-# migrate_from_chat_id = None
-# pinned_message = None
-# invoice = None
-# successful_payment = None
-# refunded_payment = None
-# users_shared = None
-# chat_shared = None
-# gift = None
-# unique_gift = None
-# connected_website = None
-# write_access_allowed = None
-# passport_data = None
-# proximity_alert_triggered = None
-# boost_added = None
-# chat_background_set = None
-# forum_topic_created = None
-# forum_topic_edited = None
-# forum_topic_closed = None
-# forum_topic_reopened = None
-# general_forum_topic_hidden = None
-# general_forum_topic_unhidden = None
-# giveaway_created = None
-# giveaway = None
-# giveaway_winners = None
-# giveaway_completed = None
-# paid_message_price_changed = None
-# video_chat_scheduled = None
-# video_chat_started = None
-# video_chat_ended = None
-# video_chat_participants_invited = None
-# web_app_data = None
-# reply_markup = None
-# forward_date = None
-# forward_from = None
-# forward_from_chat = None
-# forward_from_message_id = None
-# forward_sender_name = None
-# forward_signature = None
-# user_shared = None
+    await message.answer_photo(caption=f"{messages[lang]['welcome_text']} {full_name}", photo=img,  reply_markup=start_buttons(lang))

@@ -5,6 +5,7 @@ class Database:
     def __init__(self):
         self.connection = sqlite3.connect("evos.db")
         self.cursor = self.connection.cursor()
+
     def create_user_table(self):
         self.cursor.execute("""
             create table if not exists users(
@@ -17,6 +18,7 @@ class Database:
             lang varchar(55) default 'uz'
             )
         """)
+
     def get_user(self, telegram_id):
         user = self.cursor.execute("""
         select * from users where telegram_id = ?
@@ -29,11 +31,18 @@ class Database:
         values (?, ?, ?)
         """, (first_name, last_name, telegram_id))
         self.connection.commit()
+
     def get_user_lang(self, telegram_id):
         lang = self.cursor.execute("""
         select lang from users where telegram_id = ?
         """, (telegram_id,)).fetchone()
         return lang[0] if lang else "uz"
+    def set_user_lang(self, telegram_id, lang):
+        self.cursor.execute("""
+        update users set lang = ? where telegram_id = ?
+        """, (lang, telegram_id))
+        self.connection.commit()
+
 
 database = Database()
 database.create_user_table()
