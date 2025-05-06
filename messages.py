@@ -34,3 +34,11 @@ info_company = {
         "company": ""
     }
 }
+job_info = {
+    "uz": {
+        "job_position": "Bo‘sh ish o‘rni: EVOS’da kuryer!",
+    },
+    "ru": {
+        "job_position" : "Вакансия: Курьер в EVOS! 🚗🍔"
+    }
+}
