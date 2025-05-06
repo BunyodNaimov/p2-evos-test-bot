@@ -12,7 +12,8 @@ def start_buttons(lang):
         [
             KeyboardButton(text=f"{messages[lang]['contacts']}"),
             KeyboardButton(text=f"{messages[lang]['language']}")
-        ]
+        ],
+        [KeyboardButton(text=f"{messages[lang]['send_location']}", request_location=True),]
 
     ],
 
