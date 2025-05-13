@@ -1,5 +1,8 @@
 .container {
     max-width: 400px;
+    justify-content: center;
+    text-align: center;
+
 
 }
 .inner-container{
@@ -11,4 +14,7 @@
 .item img {
     width: 150px;
     height: 150px;
+}
+p{
+padding-top: -90px;
 }

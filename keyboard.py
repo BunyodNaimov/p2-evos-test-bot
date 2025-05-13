@@ -8,6 +8,13 @@ from aiogram.types import (
 from messages import messages
 
 
+def telegram_web_app(lang):
+    # url = "https://evos.uz/ru/" if lang == "ru" else "https://evos.uz/"
+    url = "https://bunyodnaimov.github.io/p2-evos-test-bot/"
+    web_app = WebAppInfo(url=url)
+    return web_app
+
+
 def start_buttons(lang):
     buttons = ReplyKeyboardMarkup(keyboard=[
         [KeyboardButton(text=f"{messages[lang]['about_company']}"),
@@ -36,9 +43,3 @@ def select_language():
 
     ], resize_keyboard=True)
     return buttons
-
-
-def telegram_web_app(lang):
-    url = "https://evos.uz/ru/" if lang == "ru" else "https://evos.uz/"
-    web_app = WebAppInfo(url=url)
-    return web_app

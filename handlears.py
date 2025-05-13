@@ -22,7 +22,3 @@ async def set_language(callback_query: CallbackQuery):
 async def get_jobs(message: Message):
     lang = database.get_user_lang(message.from_user.id)
     await message.answer(text=job_info[lang]["job_position"])
-
-@router.message(F.text.in_(["Menyu", "Меню"]))
-async def get_menu(message: Message):
-    lang = database.get_user_lang(message.from_user.id)
