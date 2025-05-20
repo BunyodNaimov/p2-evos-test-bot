@@ -18,6 +18,10 @@ rbtn1.addEventListener("click", function (){
 	if (count_1 > 0) {
 		count1.innerText = count_1 -= 1;
 	}
+	if (count_1 === 0){
+		tg.MainButton.hide();
+	}
+
 });
 
 btn1.addEventListener("click", function(){
