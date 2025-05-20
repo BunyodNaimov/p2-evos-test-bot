@@ -24,17 +24,4 @@ rbtn1.addEventListener("click", function (){
 
 });
 
-btn1.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.show();
-	}
-});
-btn2.addEventListener("click", function (){
-    tg.MainButton.show()
-});
-btn3.addEventListener("click", function (){
-    tg.MainButton.show()
-});
+// 2-Mahsulot
