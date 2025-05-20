@@ -1,28 +1,35 @@
 body {
-	margin: 0; /* Sahifaning chetlarida bo'sh joy qoldirmaydi */
-	padding: 0; /* Ichki bo'shliqni ham olib tashlaydi */
-	font-size: 18px; /* Matnning o'lchami 18 piksel */
+	margin: 0; /* Sahifaning chetlarida bo'sh joy yo'q */
+	padding: 0; /* Ichki bo'shliq yo'q */
+	font-size: 18px; /* Matn o'lchami 18 piksel */
 	color: var(--tg-theme-text-color); /* Matn rangi Telegramdan olinadi */
 	background: var(--tg-theme-bg-color); /* Fon rangi Telegramdan olinadi */
 }
 
 .container {
 	max-width: 400px; /* Sahifa kengligi 400 piksel, telefonlarda yaxshi ko'rinadi */
+	margin: 0 auto; /* Sahifani markazga joylashtiradi */
 }
 
 .inner {
 	display: grid; /* Mahsulotlarni tarmoq shaklida joylashtiradi */
 	grid-template-columns: 1fr 1fr; /* Ikki ustun, teng kenglikda */
-	grid-template-rows: 200px 200px 200px; /* Uch qator, har biri 200 piksel */
+	grid-template-rows: repeat(3, 250px); /* Uch qator, har biri 250 piksel */
+	gap: 10px; /* Mahsulotlar orasida 10px bo'shliq */
+}
+
+.item {
+	display: flex; /* Elementlarni vertikal joylashtiradi */
+	flex-direction: column; /* Rasm, narx, tugmalar ketma-ket keladi */
+	align-items: center; /* Hamma narsa markazda */
+	justify-content: space-between; /* Elementlar orasida teng bo'shliq */
+	padding: 10px; /* Ichki bo'shliq 10 piksel */
 }
 
 .img {
 	width: 150px; /* Rasm kengligi 150 piksel */
-	max-width: 100px; /* Maksimal kenglik 100 piksel */
-}
-
-.item {
-	text-align: center; /* Mahsulot matni markazda */
+	height: 150px; /* Rasm balandligi 150 piksel */
+	max-width: 150px; /* Maksimal kenglik 150 piksel */
 }
 
 .btn {
@@ -43,6 +50,7 @@ body {
 
 .usercard {
 	text-align: center; /* Foydalanuvchi ismi markazda */
+	padding: 10px; /* Ichki bo'shliq 10 piksel */
 }
 
 .button-container {
