@@ -26,5 +26,5 @@ async def get_jobs(message: Message):
 @router.message(F.func(lambda msg: msg.web_app_data if msg.web_app_data else None))
 async def get_web_app_data(message: Message):
     data = message.web_app_data.data
-    print(data)
+    print(data.split("|"))
 
