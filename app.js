@@ -1,96 +1,122 @@
 let tg = window.Telegram.WebApp;
 tg.expand();
-tg.MainButton.textColor = "#FFFFFF";
-tg.MainButton.color = "#af0808";
 
-// 1- Mahsulot
-let count_1 = 0;
+tg.MainButton.textColor = "#FFFFFF"
+tg.MainButton.color = "#FC3005"
+
+// -----------------------1--------------------------
+
+let item1 = ""
+let n_count1 = 0
+
+
 let count1 = document.getElementById("count1");
-let addbtn1 = document.getElementById("addbtn1");
 let rbtn1 = document.getElementById("rbtn1");
+let abtn1 = document.getElementById("abtn1");
 
-addbtn1.addEventListener("click", function (){
-    count_1++;
-    count1.innerText = count_1;
-    tg.MainButton.setText("To'lov");
+abtn1.addEventListener("click", function () {
+    count1.innerText = n_count1 += 1;
+    count1.style.display = "inline-block";
+    tg.MainButton.setText("Оплата");
+    tg.MainButton.show();
+    item1 = "Burger/12000/" + count1.innerText;
+
+});
+rbtn1.addEventListener("click", function () {
+    if (n_count1 > 0) {
+        count1.innerText = n_count1 -= 1;
+    }
+    count1.style.display = "inline-block";
+    item1 = "Burger/12000/" + count1.innerText;
+    tg.MainButton.setText("Оплата");
+    tg.MainButton.show();
+});
+// ------------------2--------------------
+
+count2 = document.getElementById("count2");
+rbtn2 = document.getElementById("rbtn2");
+abtn2 = document.getElementById("abtn2");
+let item2 = "";
+let n_count2 = 0;
+rbtn2.addEventListener("click", function () {
+    if (n_count2 > 0) {
+        count2.innerText = n_count2 -= 1;
+    }
+
+    count2.style.display = "inline-block";
+    item2 = "KFC/120000/" + count2.innerText;
+    tg.MainButton.setText("Оплата");
     tg.MainButton.show();
 });
 
-rbtn1.addEventListener("click", function (){
-    if (count_1 > 0) {
-        count_1--;
-        count1.innerText = count_1;
-    }
-    if (count_1 === 0) {
-        tg.MainButton.hide();
-    }
-});
 
-// 2- Mahsulot
-let count_2 = 0;
-let count2 = document.getElementById("count2");
-let addbtn2 = document.getElementById("addbtn2");
-let rbtn2 = document.getElementById("rbtn2");
-
-addbtn2.addEventListener("click", function (){
-    count_2++;
-    count2.innerText = count_2;
-    tg.MainButton.setText("To'lov");
+abtn2.addEventListener("click", function () {
+    count2.innerText = n_count2 += 1;
+    count2.style.display = "inline-block";
+    item2 = "KFC/120000/" + count2.innerText;
+    tg.MainButton.setText("Оплата");
     tg.MainButton.show();
 });
 
-rbtn2.addEventListener("click", function (){
-    if (count_2 > 0) {
-        count_2--;
-        count2.innerText = count_2;
-    }
-    if (count_2 === 0) {
-        tg.MainButton.hide();
-    }
-});
+// ------------------3--------------------
 
-// 3- Mahsulot
-let count_3 = 0;
-let count3 = document.getElementById("count3");
-let addbtn3 = document.getElementById("addbtn3");
-let rbtn3 = document.getElementById("rbtn3");
+count3 = document.getElementById("count3");
+rbtn3 = document.getElementById("rbtn3");
+abtn3 = document.getElementById("abtn3");
+let item3 = "";
+let n_count3 = 0;
+rbtn3.addEventListener("click", function () {
+    if (n_count3 > 0) {
+        count3.innerText = n_count3 -= 1;
+    }
 
-addbtn3.addEventListener("click", function (){
-    count_3++;
-    count3.innerText = count_3;
-    tg.MainButton.setText("To'lov");
+    count3.style.display = "inline-block";
+    item3 = "LAVASH/40000/" + count3.innerText;
+
+    tg.MainButton.setText("Оплата");
     tg.MainButton.show();
 });
 
-rbtn3.addEventListener("click", function (){
-    if (count_3 > 0) {
-        count_3--;
-        count3.innerText = count_3;
-    }
-    if (count_3 === 0) {
-        tg.MainButton.hide();
-    }
-});
 
-// 4- Mahsulot
-let count_4 = 0;
-let count4 = document.getElementById("count4");
-let addbtn4 = document.getElementById("addbtn4");
-let rbtn4 = document.getElementById("rbtn4");
-
-addbtn4.addEventListener("click", function (){
-    count_4++;
-    count4.innerText = count_4;
-    tg.MainButton.setText("To'lov");
+abtn3.addEventListener("click", function () {
+    count3.innerText = n_count3 += 1;
+    count3.style.display = "inline-block";
+    item3 = "LAVASH/40000/" + count3.innerText;
+    tg.MainButton.setText("Оплата");
     tg.MainButton.show();
 });
 
-rbtn4.addEventListener("click", function (){
-    if (count_4 > 0) {
-        count_4--;
-        count4.innerText = count_4;
+// -------------------4-------------------
+
+count4 = document.getElementById("count4");
+rbtn4 = document.getElementById("rbtn4");
+abtn4 = document.getElementById("abtn4");
+let item4 = "";
+let n_count4 = 0;
+rbtn4.addEventListener("click", function () {
+    if (n_count4 > 0) {
+        count4.innerText = n_count4 -= 1;
     }
-    if (count_4 === 0) {
-        tg.MainButton.hide();
-    }
+
+    count4.style.display = "inline-block";
+    item4 = "PIZZA/50000/" + count4.innerText;
+
+    tg.MainButton.setText("Оплата");
+    tg.MainButton.show();
+});
+
+
+abtn4.addEventListener("click", function () {
+    count4.innerText = n_count4 += 1;
+    count4.style.display = "inline-block";
+    item4 = "PIZZA/50000/" + count4.innerText;
+
+    tg.MainButton.setText("Оплата");
+    tg.MainButton.show();
+});
+
+
+Telegram.WebApp.onEvent("mainButtonClicked", function () {
+    data = item1 + "|" + item2 + "|" + item3 + "|" + item4
+    tg.sendData(data);
 });
