@@ -109,7 +109,7 @@ rbtn4.addEventListener("click", function () {
 abtn4.addEventListener("click", function () {
     count4.innerText = n_count4 += 1;
     count4.style.display = "inline-block";
-    item4 = "PIZZA/50000/" + count4.innerText;
+    item4 = "ID_4/" + count4.innerText;
 
     tg.MainButton.setText("Оплата");
     tg.MainButton.show();
