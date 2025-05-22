@@ -1,9 +1,8 @@
 from aiogram import Router, F
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import Message, CallbackQuery, LabeledPrice
 from database import database
 from keyboard import select_language, start_buttons
 from messages import messages, job_info
-
 router = Router()
 
 
@@ -22,9 +21,3 @@ async def set_language(callback_query: CallbackQuery):
 async def get_jobs(message: Message):
     lang = database.get_user_lang(message.from_user.id)
     await message.answer(text=job_info[lang]["job_position"])
-
-@router.message(F.func(lambda msg: msg.web_app_data if msg.web_app_data else None))
-async def get_web_app_data(message: Message):
-    data = message.web_app_data.data
-    print(data.split("|"))
-
