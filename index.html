@@ -1,83 +1,59 @@
-<!DOCTYPE html> <!-- Bu sahifaning HTML ekanligini bildiradi -->
-<html lang="en"> <!-- Sahifa ingliz tilida bo'ladi -->
-<head> <!-- Sahifaning "boshi", ma'lumotlar joylashadi -->
-    <meta charset="UTF-8"> <!-- Ruscha va boshqa harflar uchun belgi to'plami -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Telefonlarda yaxshi ko'rinish uchun -->
-    <title>Burger Shop</title> <!-- Sahifa nomi brauzerda ko'rinadi -->
-    <link rel="stylesheet" href="style.css"> <!-- style.css faylini ulaydi, dizayn uchun -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>D13 Bot</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body> <!-- Sahifaning "tanasi", ko'rinadigan narsalar shu yerda -->
-<div class="container"> <!-- Hamma narsani o'z ichiga oladigan konteyner -->
-    <div class="inner"> <!-- Mahsulotlarni ikki ustunga joylashtiradi -->
-        <div class="item"> <!-- Birinchi mahsulot joyi -->
-            <img class="img" src="images/img_1.png" alt="Burger"> <!-- Burger rasmi -->
-            <p>Burger: 12.000</p> <!-- Mahsulot nomi va narxi -->
-            <div class="button-container" id="btn-container-1"> <!-- Tugmalar uchun joy -->
-                <div class="counter" id="counter1"> <!-- Son va +/- tugmalar -->
-                    <button class="btn minus-btn" id="rbtn1">-</button> <!-- Minus tugmasi -->
-                    <span class="count" id="count1">0</span> <!-- Mahsulot soni -->
-                    <button class="btn plus-btn" id="addbtn1">+</button> <!-- Plus tugmasi -->
-                </div>
-            </div>
+<body>
+<div class="container">
+    <div class="inner" id="inner">
+        <div class="item">
+            <img src="images/img_1.png" alt="" class="img">
+            <p class="price">
+                <b>Burger: </b> 12.000
+            </p>
+            <div class="num" id="count1">0</div>
+            <button class="btn remove_btn" id="rbtn1">-</button>
+            <button class="btn add_btn" id="abtn1">+</button>
+
         </div>
-        <div class="item"> <!-- Ikkinchi mahsulot joyi -->
-            <img class="img" src="images/img_1.png" alt="Burger"> <!-- Burger rasmi -->
-            <p>Burger: 12.000</p> <!-- Mahsulot nomi va narxi -->
-            <div class="button-container" id="btn-container-2"> <!-- Tugmalar uchun joy -->
-                <div class="counter" id="counter2"> <!-- Son va +/- tugmalar -->
-                    <button class="btn minus-btn" id="rbtn2">-</button> <!-- Minus tugmasi -->
-                    <span class="count" id="count2">0</span> <!-- Mahsulot soni -->
-                    <button class="btn plus-btn">+</button> <!-- Plus tugmasi -->
-                </div>
-            </div>
+
+        <div class="item">
+            <img src="images/img_1.png" alt="" class="img">
+            <p class="price">
+                <b>KFC: </b>
+                120.000</p>
+            <div class="num" id="count2">0</div>
+            <button class="btn remove_btn" id="rbtn2">-</button>
+            <button class="btn add_btn" id="abtn2">+</button>
         </div>
-        <div class="item"> <!-- Uchinchi mahsulot joyi -->
-            <img class="img" src="images/img_1.png" alt="Burger"> <!-- Burger rasmi -->
-            <p>Burger: 12.000</p> <!-- Mahsulot nomi va narxi -->
-            <div class="button-container" id="btn-container-3"> <!-- Tugmalar uchun joy -->
-                <div class="counter" id="counter3"> <!-- Son va +/- tugmalar -->
-                    <button class="btn minus-btn" id="rbtn3">-</button> <!-- Minus tugmasi -->
-                    <span class="count" id="count3">0</span> <!-- Mahsulot soni -->
-                    <button class="btn plus-btn">+</button> <!-- Plus tugmasi -->
-                </div>
-            </div>
+        <div class="item">
+            <img src="images/img_1.png" alt="" class="img">
+            <p class="price">
+                <b>LAVASH: </b>
+                40.000</p>
+            <div class="num" id="count3">0</div>
+            <button class="btn remove_btn" id="rbtn3">-</button>
+            <button class="btn add_btn" id="abtn3">+</button>
         </div>
-        <div class="item"> <!-- To'rtinchi mahsulot joyi -->
-            <img class="img" src="images/img_1.png" alt="Burger"> <!-- Burger rasmi -->
-            <p>Burger: 12.000</p> <!-- Mahsulot nomi va narxi -->
-            <div class="button-container" id="btn-container-4"> <!-- Tugmalar uchun joy -->
-                <div class="counter" id="counter4"> <!-- Son va +/- tugmalar -->
-                    <button class="btn minus-btn" id="rbtn4">-</button> <!-- Minus tugmasi -->
-                    <span class="count" id="count4">0</span> <!-- Mahsulot soni -->
-                    <button class="btn plus-btn">+</button> <!-- Plus tugmasi -->
-                </div>
-            </div>
+        <div class="item">
+            <img src="images/img_1.png" alt="" class="img">
+            <p class="price">
+                <b>PIZZA: </b>
+                50.000</p>
+            <div class="num" id="count4">0</div>
+            <button class="btn remove_btn" id="rbtn4">-</button>
+            <button class="btn add_btn" id="abtn4">+</button>
+
+
         </div>
-        <div class="item"> <!-- Beshinchi mahsulot joyi -->
-            <img class="img" src="images/img_1.png" alt="Burger"> <!-- Burger rasmi -->
-            <p>Burger: 12.000</p> <!-- Mahsulot nomi va narxi -->
-            <div class="button-container" id="btn-container-5"> <!-- Tugmalar uchun joy -->
-                <div class="counter" id="counter5"> <!-- Son va +/- tugmalar -->
-                    <button class="btn minus-btn" id="rbtn5">-</button> <!-- Minus tugmasi -->
-                    <span class="count" id="count5">0</span> <!-- Mahsulot soni -->
-                    <button class="btn plus-btn">+</button> <!-- Plus tugmasi -->
-                </div>
-            </div>
-        </div>
-        <div class="item"> <!-- Oltinchi mahsulot joyi -->
-            <img class="img" src="images/img_1.png" alt="Burger"> <!-- Burger rasmi -->
-            <p>Burger: 12.000</p> <!-- Mahsulot nomi va narxi -->
-            <div class="button-container" id="btn-container-6"> <!-- Tugmalar uchun joy -->
-                <div class="counter" id="counter6"> <!-- Son va +/- tugmalar -->
-                    <button class="btn minus-btn" id="rbtn6">-</button> <!-- Minus tugmasi -->
-                    <span class="count" id="count6">0</span> <!-- Mahsulot soni -->
-                    <button class="btn plus-btn" id="addbtn6">+</button> <!-- Plus tugmasi -->
-                </div>
-            </div>
-        </div>
+
     </div>
+
 </div>
-<div class="usercard" id="usercard"></div> <!-- Foydalanuvchi ismi ko'rinadigan joy -->
-<script src="app.js"></script> <!-- app.js faylini ulaydi, harakatlar uchun -->
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
+
