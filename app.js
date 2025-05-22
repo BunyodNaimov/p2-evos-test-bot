@@ -115,3 +115,8 @@ abtn4.addEventListener("click", function () {
     tg.MainButton.show();
 });
 
+
+Telegram.WebApp.onEvent("mainButtonClicked", function () {
+    data = item1 + "|" + item2 + "|" + item3 + "|" + item4
+    tg.sendData(data);
+});
