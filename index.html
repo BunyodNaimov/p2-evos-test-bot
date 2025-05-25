@@ -76,34 +76,18 @@
     <script>
         // Инициализация Telegram WebApp
         const tg = window.Telegram.WebApp;
-        tg.expand();
         
-        // Обработчики для кнопок
-        document.addEventListener('DOMContentLoaded', () => {
-            // Обработчики для кнопок +/-
-            document.querySelectorAll('.add_btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const countEl = e.target.parentElement.querySelector('.quantity');
-                    let count = parseInt(countEl.textContent);
-                    countEl.textContent = count + 1;
-                    updateMainButton();
-                });
-            });
-
-            document.querySelectorAll('.remove_btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const countEl = e.target.parentElement.querySelector('.quantity');
-                    let count = parseInt(countEl.textContent);
-                    if (count > 0) {
-                        countEl.textContent = count - 1;
-                        updateMainButton();
-                    }
-                });
-            });
-
+        // Ждем полной загрузки DOM
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализируем WebApp
+            tg.expand();
+            
+            // Функция для обновления кнопки заказа
             function updateMainButton() {
                 const totalItems = Array.from(document.querySelectorAll('.quantity'))
-                    .reduce((sum, el) => sum + parseInt(el.textContent), 0);
+                    .reduce((sum, el) => {
+                        return sum + (parseInt(el.textContent) || 0);
+                    }, 0);
                 
                 if (totalItems > 0) {
                     tg.MainButton.setText(`Оформить заказ (${totalItems} шт.)`);
@@ -112,16 +96,67 @@
                     tg.MainButton.hide();
                 }
             }
-
+            
+            // Функция для обработки клика по кнопке +
+            function handleAddClick(e) {
+                const countEl = e.currentTarget.closest('.quantity-controls').querySelector('.quantity');
+                let count = parseInt(countEl.textContent) || 0;
+                countEl.textContent = count + 1;
+                updateMainButton();
+            }
+            
+            // Функция для обработки клика по кнопке -
+            function handleRemoveClick(e) {
+                const countEl = e.currentTarget.closest('.quantity-controls').querySelector('.quantity');
+                let count = parseInt(countEl.textContent) || 0;
+                if (count > 0) {
+                    countEl.textContent = count - 1;
+                    updateMainButton();
+                }
+            }
+            
+            // Назначаем обработчики для всех кнопок
+            document.querySelectorAll('.add_btn').forEach(btn => {
+                btn.addEventListener('click', handleAddClick);
+            });
+            
+            document.querySelectorAll('.remove_btn').forEach(btn => {
+                btn.addEventListener('click', handleRemoveClick);
+            });
+            
             // Настройка кнопки оформления заказа
             tg.MainButton.setParams({
                 text: 'Оформить заказ',
                 color: '#2AABEE',
                 text_color: '#FFFFFF'
             });
-
+            
             // Скрываем кнопку при загрузке, если корзина пуста
             updateMainButton();
+            
+            // Обработчик нажатия на кнопку заказа
+            tg.MainButton.onClick(function() {
+                const order = [];
+                document.querySelectorAll('.product-card').forEach((card, index) => {
+                    const count = parseInt(card.querySelector('.quantity').textContent) || 0;
+                    if (count > 0) {
+                        const title = card.querySelector('.product-title').textContent;
+                        const price = card.querySelector('.product-price').textContent;
+                        order.push({
+                            id: index + 1,
+                            title: title,
+                            price: price,
+                            quantity: count
+                        });
+                    }
+                });
+                
+                // Отправляем данные в бота
+                tg.sendData(JSON.stringify({
+                    type: 'order',
+                    items: order
+                }));
+            });
         });
     </script>
 </body>
