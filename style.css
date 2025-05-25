@@ -134,20 +134,23 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-top: auto;
-    gap: 8px;
+    gap: 12px;
     background: var(--tg-secondary-bg-color);
-    padding: 8px 12px;
-    border-radius: 20px;
+    padding: 8px 14px;
+    border-radius: 24px;
     position: relative;
     z-index: 2;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .quantity {
-    min-width: 24px;
+    min-width: 28px;
     text-align: center;
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: 700;
+    font-size: 18px;
     color: var(--tg-text-color);
+    font-feature-settings: 'tnum';
+    font-variant-numeric: tabular-nums;
 }
 
 .btn {
@@ -159,18 +162,19 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
     line-height: 1;
     flex-shrink: 0;
-    transition: all 0.1s ease;
+    transition: all 0.15s ease;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
     user-select: none;
     position: relative;
     z-index: 1;
     box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .btn:active {
@@ -182,14 +186,23 @@ body {
     background-color: var(--tg-button-color);
     color: white;
     border: 2px solid var(--tg-button-color);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(42, 171, 238, 0.3);
+    font-weight: 700;
 }
 
 .remove_btn {
     background-color: white;
     color: var(--tg-button-color);
     border: 2px solid var(--tg-button-color);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-weight: 700;
+    opacity: 0.9;
+}
+
+.remove_btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
 }
 
 .quantity-controls {
@@ -264,13 +277,18 @@ body {
     }
     
     .btn {
-        width: 32px;
-        height: 32px;
-        font-size: 18px;
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
     }
     
     .quantity {
-        font-size: 15px;
+        font-size: 16px;
+    }
+    
+    .quantity-controls {
+        padding: 6px 12px;
+        gap: 10px;
     }
 }
 
