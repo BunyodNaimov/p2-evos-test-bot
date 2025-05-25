@@ -1,59 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>D13 Bot</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">
-    <div class="inner" id="inner">
-        <div class="item">
-            <img src="images/img_1.png" alt="" class="img">
-            <p class="price">
-                <b>Burger: </b> 12.000
-            </p>
-            <div class="num" id="count1">0</div>
-            <button class="btn remove_btn" id="rbtn1">-</button>
-            <button class="btn add_btn" id="abtn1">+</button>
-
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Наше меню</h1>
         </div>
+        <div class="products-grid" id="products">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="images/img_2.png" alt="Большой лаваш с курицей" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Большой лаваш с курицей</h3>
+                    <p class="product-price">35.000 сум</p>
+                    <div class="quantity-controls">
+                        <button class="btn remove_btn" id="rbtn1">-</button>
+                        <span class="quantity" id="count1">0</span>
+                        <button class="btn add_btn" id="abtn1">+</button>
+                    </div>
+                </div>
+            </div>
 
-        <div class="item">
-            <img src="images/img_1.png" alt="" class="img">
-            <p class="price">
-                <b>KFC: </b>
-                120.000</p>
-            <div class="num" id="count2">0</div>
-            <button class="btn remove_btn" id="rbtn2">-</button>
-            <button class="btn add_btn" id="abtn2">+</button>
-        </div>
-        <div class="item">
-            <img src="images/img_1.png" alt="" class="img">
-            <p class="price">
-                <b>LAVASH: </b>
-                40.000</p>
-            <div class="num" id="count3">0</div>
-            <button class="btn remove_btn" id="rbtn3">-</button>
-            <button class="btn add_btn" id="abtn3">+</button>
-        </div>
-        <div class="item">
-            <img src="images/img_1.png" alt="" class="img">
-            <p class="price">
-                <b>PIZZA: </b>
-                50.000</p>
-            <div class="num" id="count4">0</div>
-            <button class="btn remove_btn" id="rbtn4">-</button>
-            <button class="btn add_btn" id="abtn4">+</button>
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="images/img_3.png" alt="Большая шаурма с курицей" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Большая шаурма с курицей</h3>
+                    <p class="product-price">32.000 сум</p>
+                    <div class="quantity-controls">
+                        <button class="btn remove_btn" id="rbtn2">-</button>
+                        <span class="quantity" id="count2">0</span>
+                        <button class="btn add_btn" id="abtn2">+</button>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="images/img_4.png" alt="Фреш Бургер с курицей" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Фреш Бургер с курицей</h3>
+                    <p class="product-price">30.000 сум</p>
+                    <div class="quantity-controls">
+                        <button class="btn remove_btn" id="rbtn3">-</button>
+                        <span class="quantity" id="count3">0</span>
+                        <button class="btn add_btn" id="abtn3">+</button>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="images/img_5.png" alt="Гамбургер" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">Гамбургер</h3>
+                    <p class="product-price">31.000 сум</p>
+                    <div class="quantity-controls">
+                        <button class="btn remove_btn" id="rbtn4">-</button>
+                        <span class="quantity" id="count4">0</span>
+                        <button class="btn add_btn" id="abtn4">+</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
+    <script>
+        // Инициализация Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+        
+        // Обработчики для кнопок
+        document.addEventListener('DOMContentLoaded', () => {
+            // Обработчики для кнопок +/-
+            document.querySelectorAll('.add_btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const countEl = e.target.parentElement.querySelector('.quantity');
+                    let count = parseInt(countEl.textContent);
+                    countEl.textContent = count + 1;
+                    updateMainButton();
+                });
+            });
 
-</div>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<script src="app.js"></script>
+            document.querySelectorAll('.remove_btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const countEl = e.target.parentElement.querySelector('.quantity');
+                    let count = parseInt(countEl.textContent);
+                    if (count > 0) {
+                        countEl.textContent = count - 1;
+                        updateMainButton();
+                    }
+                });
+            });
+
+            function updateMainButton() {
+                const totalItems = Array.from(document.querySelectorAll('.quantity'))
+                    .reduce((sum, el) => sum + parseInt(el.textContent), 0);
+                
+                if (totalItems > 0) {
+                    tg.MainButton.setText(`Оформить заказ (${totalItems} шт.)`);
+                    tg.MainButton.show();
+                } else {
+                    tg.MainButton.hide();
+                }
+            }
+
+            // Настройка кнопки оформления заказа
+            tg.MainButton.setParams({
+                text: 'Оформить заказ',
+                color: '#2AABEE',
+                text_color: '#FFFFFF'
+            });
+
+            // Скрываем кнопку при загрузке, если корзина пуста
+            updateMainButton();
+        });
+    </script>
 </body>
 </html>
 
