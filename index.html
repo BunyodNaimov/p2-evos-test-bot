@@ -1,223 +1,58 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="format-detection" content="telephone=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>D13 Bot</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1 class="title">Наше меню</h1>
+<div class="container">
+    <div class="inner" id="inner">
+        <div class="item">
+            <img src="images/img_1.png" alt="" class="img">
+            <p class="price">
+                <b>Burger: </b> 12.000
+            </p>
+            <div class="num" id="count1">0</div>
+            <button class="btn remove_btn" id="rbtn1">-</button>
+            <button class="btn add_btn" id="abtn1">+</button>
+
         </div>
-        <div class="products-grid" id="products">
-            <!-- Product 1 -->
-            <div class="product-card">
-                <img src="images/img_2.png" alt="Большой лаваш с курицей" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Большой лаваш с курицей</h3>
-                    <p class="product-price">35.000 сум</p>
-                    <div class="quantity-controls">
-                        <button class="btn remove_btn" id="rbtn1">-</button>
-                        <span class="quantity" id="count1">0</span>
-                        <button class="btn add_btn" id="abtn1">+</button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Product 2 -->
-            <div class="product-card">
-                <img src="images/img_3.png" alt="Большая шаурма с курицей" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Большая шаурма с курицей</h3>
-                    <p class="product-price">32.000 сум</p>
-                    <div class="quantity-controls">
-                        <button class="btn remove_btn" id="rbtn2">-</button>
-                        <span class="quantity" id="count2">0</span>
-                        <button class="btn add_btn" id="abtn2">+</button>
-                    </div>
-                </div>
-            </div>
+        <div class="item">
+            <img src="images/img_1.png" alt="" class="img">
+            <p class="price">
+                <b>KFC: </b>
+                120.000</p>
+            <div class="num" id="count2">0</div>
+            <button class="btn remove_btn" id="rbtn2">-</button>
+            <button class="btn add_btn" id="abtn2">+</button>
+        </div>
+        <div class="item">
+            <img src="images/img_1.png" alt="" class="img">
+            <p class="price">
+                <b>LAVASH: </b>
+                40.000</p>
+            <div class="num" id="count3">0</div>
+            <button class="btn remove_btn" id="rbtn3">-</button>
+            <button class="btn add_btn" id="abtn3">+</button>
+        </div>
+        <div class="item">
+            <img src="images/img_1.png" alt="" class="img">
+            <p class="price">
+                <b>PIZZA: </b>
+                50.000</p>
+            <div class="num" id="count4">0</div>
+            <button class="btn remove_btn" id="rbtn4">-</button>
+            <button class="btn add_btn" id="abtn4">+</button>
 
-            <!-- Product 3 -->
-            <div class="product-card">
-                <img src="images/img_4.png" alt="Фреш Бургер с курицей" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Фреш Бургер с курицей</h3>
-                    <p class="product-price">30.000 сум</p>
-                    <div class="quantity-controls">
-                        <button class="btn remove_btn" id="rbtn3">-</button>
-                        <span class="quantity" id="count3">0</span>
-                        <button class="btn add_btn" id="abtn3">+</button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Product 4 -->
-            <div class="product-card">
-                <img src="images/img_5.png" alt="Гамбургер" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Гамбургер</h3>
-                    <p class="product-price">31.000 сум</p>
-                    <div class="quantity-controls">
-                        <button class="btn remove_btn" id="rbtn4">-</button>
-                        <span class="quantity" id="count4">0</span>
-                        <button class="btn add_btn" id="abtn4">+</button>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </div>
-    <script>
-        // Инициализация Telegram WebApp
-        const tg = window.Telegram.WebApp;
-        
-        // Ждем полной загрузки DOM
-        document.addEventListener('DOMContentLoaded', function() {
-            // Инициализируем WebApp
-            tg.expand();
-            
-            // Функция для обновления кнопки заказа
-            function updateMainButton() {
-                const totalItems = Array.from(document.querySelectorAll('.quantity'))
-                    .reduce((sum, el) => {
-                        return sum + (parseInt(el.textContent) || 0);
-                    }, 0);
-                
-                if (totalItems > 0) {
-                    tg.MainButton.setText(`Оформить заказ (${totalItems} шт.)`);
-                    tg.MainButton.show();
-                } else {
-                    tg.MainButton.hide();
-                }
-            }
-            
-            // Функция для обновления состояния кнопок
-            function updateButtonsState() {
-                document.querySelectorAll('.quantity-controls').forEach(controls => {
-                    const countEl = controls.querySelector('.quantity');
-                    const removeBtn = controls.querySelector('.remove_btn');
-                    const count = parseInt(countEl.textContent) || 0;
-                    
-                    // Обновляем состояние кнопки "-"
-                    if (count <= 0) {
-                        removeBtn.disabled = true;
-                        removeBtn.style.opacity = '0.5';
-                    } else {
-                        removeBtn.disabled = false;
-                        removeBtn.style.opacity = '0.9';
-                    }
-                });
-            }
-            
-            // Функция для обработки клика по кнопке +
-            function handleAddClick(e) {
-                const controls = e.currentTarget.closest('.quantity-controls');
-                const countEl = controls.querySelector('.quantity');
-                let count = parseInt(countEl.textContent) || 0;
-                countEl.textContent = count + 1;
-                updateButtonsState();
-                updateMainButton();
-                
-                // Анимация нажатия
-                e.currentTarget.style.transform = 'scale(0.9)';
-                setTimeout(() => {
-                    e.currentTarget.style.transform = '';
-                }, 100);
-            }
-            
-            // Функция для обработки клика по кнопке -
-            function handleRemoveClick(e) {
-                const controls = e.currentTarget.closest('.quantity-controls');
-                const countEl = controls.querySelector('.quantity');
-                let count = parseInt(countEl.textContent) || 0;
-                if (count > 0) {
-                    countEl.textContent = count - 1;
-                    updateButtonsState();
-                    updateMainButton();
-                    
-                    // Анимация нажатия
-                    e.currentTarget.style.transform = 'scale(0.9)';
-                    setTimeout(() => {
-                        e.currentTarget.style.transform = '';
-                    }, 100);
-                }
-            }
-            
-            // Назначаем обработчики для всех кнопок
-            document.querySelectorAll('.add_btn').forEach(btn => {
-                btn.addEventListener('click', handleAddClick);
-                // Добавляем стили при наведении
-                btn.addEventListener('mousedown', (e) => {
-                    e.currentTarget.style.transform = 'scale(0.95)';
-                });
-                btn.addEventListener('mouseup', (e) => {
-                    e.currentTarget.style.transform = '';
-                });
-                btn.addEventListener('mouseleave', (e) => {
-                    e.currentTarget.style.transform = '';
-                });
-            });
-            
-            document.querySelectorAll('.remove_btn').forEach(btn => {
-                btn.addEventListener('click', handleRemoveClick);
-                // Добавляем стили при наведении
-                btn.addEventListener('mousedown', (e) => {
-                    if (!e.currentTarget.disabled) {
-                        e.currentTarget.style.transform = 'scale(0.95)';
-                    }
-                });
-                btn.addEventListener('mouseup', (e) => {
-                    e.currentTarget.style.transform = '';
-                });
-                btn.addEventListener('mouseleave', (e) => {
-                    e.currentTarget.style.transform = '';
-                });
-            });
-            
-            // Инициализируем начальное состояние кнопок
-            updateButtonsState();
-            
-            // Настройка кнопки оформления заказа
-            tg.MainButton.setParams({
-                text: 'Оформить заказ',
-                color: '#2AABEE',
-                text_color: '#FFFFFF'
-            });
-            
-            // Скрываем кнопку при загрузке, если корзина пуста
-            updateMainButton();
-            
-            // Обработчик нажатия на кнопку заказа
-            tg.MainButton.onClick(function() {
-                const order = [];
-                document.querySelectorAll('.product-card').forEach((card, index) => {
-                    const count = parseInt(card.querySelector('.quantity').textContent) || 0;
-                    if (count > 0) {
-                        const title = card.querySelector('.product-title').textContent;
-                        const price = card.querySelector('.product-price').textContent;
-                        order.push({
-                            id: index + 1,
-                            title: title,
-                            price: price,
-                            quantity: count
-                        });
-                    }
-                });
-                
-                // Отправляем данные в бота
-                tg.sendData(JSON.stringify({
-                    type: 'order',
-                    items: order
-                }));
-            });
-        });
-    </script>
+
+</div>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
-

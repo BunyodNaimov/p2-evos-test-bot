@@ -1,346 +1,39 @@
-:root {
-    --primary-color: #2AABEE;
-    --secondary-color: #229ED9;
-    --background-color: #FFFFFF;
-    --text-color: #000000;
-    --card-bg: #FFFFFF;
-    --border-radius: 12px;
-    --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --tg-bg-color: #ffffff;
-    --tg-button-color: #2AABEE;
-    --tg-button-text-color: #ffffff;
-    --tg-secondary-bg-color: #f4f4f5;
-    --tg-text-color: #000000;
-    --tg-hint-color: #707579;
-    --tg-link-color: #3390ec;
-    --tg-border-radius: 12px;
-}
-
 body {
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    font-size: 17px;
-    color: var(--tg-text-color);
-    background-color: var(--tg-bg-color);
-    line-height: 1.4;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    height: 100%;
-    overflow-x: hidden;
-    overscroll-behavior-y: none;
+    font-size: 18px;
+    color: var(--tg-theme-text-color);
+    background: var(--tg-theme-bg-color);
 }
-
 .container {
-    width: 100%;
-    margin: 0 auto;
-    padding: 12px 12px 80px;
-    box-sizing: border-box;
-    max-width: 600px;
-    min-height: 100vh;
-    position: relative;
-    background: var(--tg-bg-color);
+    max-width: 400px;
 }
-
-.title {
-    text-align: center;
-    color: var(--tg-text-color);
-    margin: 0 0 16px 0;
-    font-size: 1.5rem;
-    font-weight: 600;
-    padding: 8px 0;
-}
-
-.products-grid {
+.inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    padding: 0 10px;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 16px;
-    max-width: 600px;
-    margin: 0 auto;
+    grid-template-rows: 200px 200px 200px;
 }
-
-.product-card {
-    background: var(--card-bg);
-    border-radius: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 240px;
-    padding: 10px;
-    box-sizing: border-box;
-    transition: all 0.2s ease;
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1/1.5;
+.img {
+    width: 150px;
+    height: 150px;
+    max-height: 100px;
 }
-
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-.product-image {
-    width: 100%;
-    height: 110px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    background: #f8f8f8;
-    flex-shrink: 0;
-}
-
-.product-info {
-    padding: 0;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 0;
-}
-
-.product-title {
-    margin: 0 0 6px 0;
-    font-size: 14px;
-    color: var(--tg-text-color);
-    font-weight: 500;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    line-height: 1.3;
-    min-height: 2.6em;
-    text-align: left;
-    padding: 0 2px;
-    flex-shrink: 0;
-}
-
-.product-price {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--tg-button-color);
-    margin: 4px 0 8px;
-    text-align: left;
-    padding: 0 2px;
-    flex-shrink: 0;
-}
-
-.quantity-controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: auto;
-    gap: 12px;
-    background: var(--tg-secondary-bg-color);
-    padding: 8px 14px;
-    border-radius: 24px;
-    position: relative;
-    z-index: 2;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.quantity {
-    min-width: 28px;
+.item {
     text-align: center;
-    font-weight: 700;
-    font-size: 18px;
-    color: var(--tg-text-color);
-    font-feature-settings: 'tnum';
-    font-variant-numeric: tabular-nums;
 }
-
 .btn {
-    cursor: pointer;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-    font-weight: bold;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    font-size: 22px;
-    line-height: 1;
-    flex-shrink: 0;
-    transition: all 0.15s ease;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-    user-select: none;
-    position: relative;
-    z-index: 1;
-    box-sizing: border-box;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	display: inline-block;
+	padding: 10px 20px;
+	border: none;
+	background: rgb(248, 168, 24);
+	border-radius: 10px;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 700;
+
+	transition: background .2s linear;
 }
 
-.btn:active {
-    transform: scale(0.92);
-    opacity: 0.9;
-}
-
-.add_btn {
-    background-color: var(--tg-button-color);
-    color: white;
-    border: 2px solid var(--tg-button-color);
-    box-shadow: 0 2px 6px rgba(42, 171, 238, 0.3);
-    font-weight: 700;
-}
-
-.remove_btn {
-    background-color: white;
-    color: var(--tg-button-color);
-    border: 2px solid var(--tg-button-color);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    font-weight: 700;
-    opacity: 0.9;
-}
-
-.remove_btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none !important;
-}
-
-.quantity-controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: auto;
-    gap: 10px;
-    background: var(--tg-secondary-bg-color);
-    padding: 8px 12px;
-    border-radius: 20px;
-    position: relative;
-    z-index: 2;
-}
-
-.quantity {
-    min-width: 24px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 16px;
-    color: var(--tg-text-color);
-    padding: 0 4px;
-}
-
-.quantity {
-    min-width: 24px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1rem;
-    color: #333;
-}
-
-/* Стили для скроллбара */
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
-}
-
-/* Анимация нажатия на карточку */
-.product-card:active {
-    transform: scale(0.98);
-    opacity: 0.9;
-}
-
-/* Адаптивность для маленьких экранов */
-@media (max-width: 400px) {
-    .products-grid {
-        padding: 0 8px;
-        gap: 10px;
-    }
-    
-    .product-card {
-        height: auto;
-        min-height: 220px;
-    }
-    
-    .product-image {
-        height: 100px;
-    }
-    
-    .product-title {
-        font-size: 13px;
-    }
-    
-    .product-price {
-        font-size: 14px;
-    }
-    
-    .btn {
-        width: 36px;
-        height: 36px;
-        font-size: 20px;
-    }
-    
-    .quantity {
-        font-size: 16px;
-    }
-    
-    .quantity-controls {
-        padding: 6px 12px;
-        gap: 10px;
-    }
-}
-
-@media (max-width: 360px) {
-    .products-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-        max-width: 300px;
-    }
-    
-    .product-card {
-        height: auto;
-        min-height: 140px;
-    }
-    
-    .product-image {
-        height: 120px;
-    }
-}
-
-/* Стили для состояния загрузки */
-@keyframes shimmer {
-    0% { background-position: -468px 0; }
-    100% { background-position: 468px 0; }
-}
-
-.loading {
-    background: #f6f7f8;
-    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
-    background-repeat: no-repeat;
-    background-size: 800px 104px;
-    display: inline-block;
-    position: relative;
-    animation: shimmer 1.2s ease-in-out infinite;
-    border-radius: 4px;
-}
-
-/* Улучшаем отображение в темной теме Telegram */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --tg-bg-color: #18222d;
-        --tg-secondary-bg-color: #2a3a4a;
-        --tg-text-color: #ffffff;
-        --tg-hint-color: #a8b2bb;
-        --tg-link-color: #5d9cec;
-    }
-    
-    .product-card {
-        border-color: rgba(255, 255, 255, 0.08);
-    }
-    
-    .product-image {
-        background: #2a3a4a;
-    }
+.num{
+    display: none;
 }
